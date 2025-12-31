@@ -5,16 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e37ac454-a997-47c8-b74f-5a5b2fecbe26" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.env.local" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/routes/admin/admin-layout.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/routes/admin/all-users.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/routes/admin/dashboard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/root.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/root.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routes/home.tsx" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/Header.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/MobileSidebar.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/NavItems.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/utils.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/admin/admin-layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/admin/admin-layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/admin/all-users.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/admin/all-users.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/admin/dashboard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/admin/dashboard.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vite.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/vite.config.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,7 +80,7 @@
       <option name="presentableId" value="Default" />
       <updated>1767167962930</updated>
       <workItem from="1767167964873" duration="5203000" />
-      <workItem from="1767173957831" duration="5107000" />
+      <workItem from="1767173957831" duration="13676000" />
     </task>
     <servers />
   </component>
