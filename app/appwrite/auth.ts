@@ -45,6 +45,48 @@ export const storeUserData = async () => {
     }
 };
 
+// In Auth.ts - UPDATED storeUserData function
+// export const storeUserData = async () => {
+//     try {
+//         const user = await account.get();
+//         if (!user) throw new Error("User not found");
+//
+//         // --- CRITICAL FIX: Check for existing user FIRST ---
+//         const existingUser = await getExistingUser(user.$id);
+//
+//         // If user already exists in our table, do NOT create a new document
+//         if (existingUser) {
+//             console.log(`User ${user.name} already exists in database. Skipping creation.`);
+//             return existingUser; // Optionally return the existing record
+//         }
+//         // --- END FIX ---
+//
+//         const { providerAccessToken } = (await account.getSession("current")) || {};
+//         const profilePicture = providerAccessToken
+//             ? await getGooglePicture(providerAccessToken)
+//             : null;
+//
+//         const createdUser = await database.createDocument(
+//             appwriteConfig.databaseId,
+//             appwriteConfig.userTableId,
+//             ID.unique(),
+//             {
+//                 accountId: user.$id,
+//                 email: user.email,
+//                 name: user.name,
+//                 imageUrl: profilePicture,
+//                 joinedAt: new Date().toISOString(),
+//                 status: "user", // <-- Ensure a default status is set
+//             }
+//         );
+//
+//         if (!createdUser.$id) redirect("/sign-in");
+//         return createdUser;
+//     } catch (error) {
+//         console.error("Error storing user data:", error);
+//     }
+// };
+
 const getGooglePicture = async (accessToken: string) => {
     try {
         const response = await fetch(
@@ -102,19 +144,18 @@ export const getUser = async () => {
     }
 };
 
-export const getAllUsers = async (limit: number, offset: number) => {
+export const getAllUsers = async ({ limit, offset }: { limit: number; offset: number }) => {
     try {
         const { documents: users, total } = await database.listDocuments(
             appwriteConfig.databaseId,
             appwriteConfig.userTableId,
             [Query.limit(limit), Query.offset(offset)]
-        )
+        );
 
-        if(total === 0) return { users: [], total };
-
+        if (total === 0) return { users: [], total };
         return { users, total };
     } catch (e) {
-        console.log('Error fetching users')
-        return { users: [], total: 0 }
+        console.error('Error fetching users:', e);
+        return { users: [], total: 0 };
     }
-}
+};
