@@ -22,7 +22,7 @@ export const loader = async () => {
 
     return data.map((country: any) => ({
         name: country.name.common,
-        flag: country.flags.svg, // ✅ SVG image for flag
+        flag: country.flags.svg,
         coordinates: country.latlng,
         value: country.name.common,
         openStreetMap: country.maps?.openStreetMap,
