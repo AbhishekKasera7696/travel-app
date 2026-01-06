@@ -14,7 +14,6 @@ import { account } from "~/appwrite/client";
 import { useNavigate } from "react-router";
 import { cn, formatKey } from "../../../lib/utils";
 
-// ✅ Loader — only returns plain data (no JSX)
 export const loader = async () => {
     const response = await fetch(
         "https://restcountries.com/v3.1/all?fields=name,flags,region,capital,population,latlng,maps"
