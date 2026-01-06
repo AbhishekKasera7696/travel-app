@@ -104,11 +104,12 @@ const getGooglePicture = async (accessToken: string) => {
 };
 
 export const loginWithGoogle = async () => {
+    const BASE_URL = import.meta.env.VITE_BASE_URL;
     try {
         account.createOAuth2Session(
             OAuthProvider.Google,
-            `${window.location.origin}/`,
-            `${window.location.origin}/404`
+            `${BASE_URL}/`,
+            `${BASE_URL}/404`
         );
     } catch (error) {
         console.error("Error during OAuth2 session creation:", error);
