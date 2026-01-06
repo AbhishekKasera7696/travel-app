@@ -5,26 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e37ac454-a997-47c8-b74f-5a5b2fecbe26" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/routes/admin/create-trip.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/routes/admin/trips.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/routes/api/create-trip.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/routes/root/sign-in.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/instrument.server.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/appwrite/dashboard.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/appwrite/trips.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/routes/admin/trip-detail.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/routes/root/page-layout.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/routes/root/payment-page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/routes/root/payment-success.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/routes/root/travel-detail.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/routes/root/travel-page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/InfoPill.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/RootNavbar.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/stripe.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.env.local" beforeDir="false" afterPath="$PROJECT_DIR$/.env.local" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/appwrite/auth.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/appwrite/auth.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/constants/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/constants/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/root.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/root.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routes/admin/admin-layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/admin/admin-layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routes/admin/all-users.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/admin/all-users.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/admin/create-trip.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/admin/create-trip.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/routes/admin/dashboard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/admin/dashboard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Header.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/NavItems.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/NavItems.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/admin/trips.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/admin/trips.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/api/create-trip.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/api/create-trip.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/components/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-router.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/react-router.config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vite.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/vite.config.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,12 +91,23 @@
       <updated>1767167962930</updated>
       <workItem from="1767167964873" duration="5203000" />
       <workItem from="1767173957831" duration="46828000" />
-      <workItem from="1767364700808" duration="29758000" />
+      <workItem from="1767364700808" duration="54479000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -112,7 +124,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/app/routes/admin/dashboard.tsx</url>
-          <line>16</line>
+          <line>63</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
@@ -138,6 +150,12 @@
           <line>48</line>
           <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/app/routes/api/create-trip.ts</url>
+          <line>130</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="14" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

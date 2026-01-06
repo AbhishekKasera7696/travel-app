@@ -123,9 +123,10 @@
 
 import { type ActionFunctionArgs } from "react-router";
 import { OpenRouter } from "@openrouter/sdk";
-import { parseMarkdownToJson } from "../../../lib/utils";
+import {parseMarkdownToJson, parseTripData} from "../../../lib/utils";
 import { appwriteConfig, database } from "~/appwrite/client";
 import { ID } from "appwrite";
+import {createProduct} from "../../../lib/stripe";
 
 export const action = async ({ request }: ActionFunctionArgs) => {
     const {
@@ -153,49 +154,63 @@ export const action = async ({ request }: ActionFunctionArgs) => {
     const openRouter = new OpenRouter({ apiKey: OPENROUTER_API_KEY });
 
     // Prompt: strongly request JSON-only output
-    const prompt = `You are a travel planner. Return ONLY valid JSON (no markdown, no commentary).
-Return a ${numberOfDays}-day travel itinerary for ${country} using this JSON schema:
-{
-  "name": string,
-  "description": string,
-  "estimatedPrice": string, // e.g. "$1234"
-  "duration": number,
-  "budget": string,
-  "travelStyle": string,
-  "country": string,
-  "interests": string,
-  "groupType": string,
-  "bestTimeToVisit": string[],
-  "weatherInfo": string[],
-  "location": {
-    "city": string,
-    "coordinates": [latitude, longitude],
-    "openStreetMap": string
-  },
-  "itinerary": [
-    {
-      "day": number,
-      "location": string,
-      "activities": [{ "time": string, "description": string }]
-    }
-  ]
-}
-Be concise in values. Make sure the top-level result is valid JSON parsable by JSON.parse().`;
-
+    const prompt = `Generate a ${numberOfDays}-day travel itinerary for ${country} based on the following user information:
+//         Budget: '${budget}'
+//         Interests: '${interests}'
+//         TravelStyle: '${travelStyle}'
+//         GroupType: '${groupType}'
+//         Return the itinerary and lowest estimated price in a clean, non-markdown JSON format with the following structure:
+//         {
+//         "name": "A descriptive title for the trip",
+//         "description": "A brief description of the trip and its highlights not exceeding 100 words",
+//         "estimatedPrice": "Lowest average price for the trip in USD, e.g.$price",
+//         "duration": ${numberOfDays},
+//         "budget": "${budget}",
+//         "travelStyle": "${travelStyle}",
+//         "country": "${country}",
+//         "interests": ${interests},
+//         "groupType": "${groupType}",
+//         "bestTimeToVisit": [
+//           '🌸 Season (from month to month): reason to visit',
+//           '☀️ Season (from month to month): reason to visit',
+//           '🍁 Season (from month to month): reason to visit',
+//           '❄️ Season (from month to month): reason to visit'
+//         ],
+//         "weatherInfo": [
+//           '☀️ Season: temperature range in Celsius (temperature range in Fahrenheit)',
+//           '🌦️ Season: temperature range in Celsius (temperature range in Fahrenheit)',
+//           '🌧️ Season: temperature range in Celsius (temperature range in Fahrenheit)',
+//           '❄️ Season: temperature range in Celsius (temperature range in Fahrenheit)'
+//         ],
+//         "location": {
+//           "city": "name of the city or region",
+//           "coordinates": [latitude, longitude],
+//           "openStreetMap": "link to open street map"
+//         },
+//         "itinerary": [
+//         {
+//           "day": 1,
+//           "location": "City/Region Name",
+//           "activities": [
+//             {"time": "Morning", "description": "🏰 Visit the local historic castle and enjoy a scenic walk"},
+//             {"time": "Afternoon", "description": "🖼️ Explore a famous art museum with a guided tour"},
+//             {"time": "Evening", "description": "🍷 Dine at a rooftop restaurant with local wine"}
+//           ]
+//         },
+//         ...
+//         ]
+//     }`;
     let trip: any = null;
 
     try {
-        // send chat completion to OpenRouter (choose a free or default model)
-        // model string can be a free community model like 'deepseek/deepseek-r1:free' or an OpenAI model routed via OpenRouter.
         const completion = await openRouter.chat.send({
-            model: "deepseek/deepseek-r1:free", // you can change this to any available model; this one is commonly available as free
+            model: "deepseek/deepseek-r1:free",
             messages: [{ role: "user", content: prompt }],
             stream: false,
             // optional: limit tokens so responses don't get huge
             max_tokens: 800,
         });
 
-        // safe extraction of content
         const content =
             completion?.choices?.[0]?.message?.content ??
             completion?.choices?.[0]?.message ??
@@ -284,6 +299,26 @@ Be concise in values. Make sure the top-level result is valid JSON parsable by J
                 userId,
             }
         );
+
+        const tripDetail = parseTripData(result.tripDetails) as Trip;
+        const tripPrice = parseInt(tripDetail.estimatedPrice.replace('$', ''), 10)
+        const paymentLink = await createProduct(
+            tripDetail.name,
+            tripDetail.description,
+            imageUrls,
+            tripPrice,
+            result.$id
+        )
+
+        await database.updateDocument(
+            appwriteConfig.databaseId,
+            appwriteConfig.tripTableId,
+            result.$id,
+            {
+                payment_link: paymentLink.url
+            }
+        )
+
 
         return new Response(JSON.stringify({ id: result.$id }), {
             status: 200,
