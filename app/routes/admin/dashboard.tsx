@@ -17,51 +17,50 @@ import {tripXAxis, tripyAxis, userXAxis, useryAxis} from "~/constants";
 import {redirect} from "react-router";
 
 export const clientLoader = async () => {
-    const [
-        user,
-        dashboardStats,
-        trips,
-        userGrowth,
-        tripsByTravelStyle,
-        allUsers,
-    ] = await Promise.all([
-        await storeUserData(),
-        await getUser(),
-        await getUsersAndTripsStats(),
-        await getAllTrips(4, 0),
-        await getUserGrowthPerDay(),
-        await getTripsByTravelStyle(),
-        await getAllUsers(4, 0),
-    ])
+    await storeUserData();
+    const user = await getUser().catch(() => null);
 
-    const allTrips = trips.allTrips.map(({ $id, tripDetails, imageUrls }) => ({
-        id: $id,
-        ...parseTripData(tripDetails),
-        imageUrls: imageUrls ?? []
-    }))
+    const [dashboardStats, trips, userGrowth, tripsByTravelStyle, allUsers] = await Promise.all([
+        getUsersAndTripsStats(),
+        getAllTrips(4, 0),
+        getUserGrowthPerDay(),
+        getTripsByTravelStyle(),
+        getAllUsers(4, 0),
+    ]);
 
-    const mappedUsers: UsersItineraryCount[] = allUsers.users.map((user) => ({
-        imageUrl: user.imageUrl,
-        name: user.name,
-        count: user.itineraryCount ?? Math.floor(Math.random() * 10),
-    }))
+    const allTrips = trips?.allTrips
+        ? trips.allTrips.map(({ $id, tripDetails, imageUrls }) => ({
+            id: $id,
+            ...parseTripData(tripDetails),
+            imageUrls: imageUrls ?? [],
+        }))
+        : [];
+
+    const mappedUsers: UsersItineraryCount[] = allUsers?.users
+        ? allUsers.users.map((user) => ({
+            imageUrl: user.imageUrl,
+            name: user.name,
+            count: user.itineraryCount ?? Math.floor(Math.random() * 10),
+        }))
+        : [];
 
     return {
         user,
-        dashboardStats,
+        dashboardStats: dashboardStats ?? { totalUsers: 0, totalTrips: 0, usersJoined: {}, tripsCreated: {}, userRole: {} },
         allTrips,
-        userGrowth,
-        tripsByTravelStyle,
-        allUsers: mappedUsers
-    }
-}
+        userGrowth: userGrowth ?? [],
+        tripsByTravelStyle: tripsByTravelStyle ?? [],
+        allUsers: mappedUsers,
+    };
+};
+
 
 
 const Dashboard = ({ loaderData }: Route.ComponentProps) => {
     const user = loaderData.user as User | null;
     const { dashboardStats, allTrips, userGrowth, tripsByTravelStyle, allUsers } = loaderData;
 
-    const trips = allTrips.map((trip) => ({
+    const trips = allTrips?.map((trip) => ({
         imageUrl: trip.imageUrls[0],
         name: trip.name,
         interest: trip.interests,
