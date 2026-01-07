@@ -16,50 +16,10 @@ export const getExistingUser = async (id: string) => {
     }
 };
 
-export const storeUserData = async () => {
-    try {
-        const user = await account.get();
-        if (!user) throw new Error("User not found");
-
-        const { providerAccessToken } = (await account.getSession("current")) || {};
-        const profilePicture = providerAccessToken
-            ? await getGooglePicture(providerAccessToken)
-            : null;
-
-        const createdUser = await database.createDocument(
-            appwriteConfig.databaseId,
-            appwriteConfig.userTableId,
-            ID.unique(),
-            {
-                accountId: user.$id,
-                email: user.email,
-                name: user.name,
-                imageUrl: profilePicture,
-                joinedAt: new Date().toISOString(),
-            }
-        );
-
-        if (!createdUser.$id) redirect("/sign-in");
-    } catch (error) {
-        console.error("Error storing user data:", error);
-    }
-};
-
-// In Auth.ts - UPDATED storeUserData function
 // export const storeUserData = async () => {
 //     try {
 //         const user = await account.get();
 //         if (!user) throw new Error("User not found");
-//
-//         // --- CRITICAL FIX: Check for existing user FIRST ---
-//         const existingUser = await getExistingUser(user.$id);
-//
-//         // If user already exists in our table, do NOT create a new document
-//         if (existingUser) {
-//             console.log(`User ${user.name} already exists in database. Skipping creation.`);
-//             return existingUser; // Optionally return the existing record
-//         }
-//         // --- END FIX ---
 //
 //         const { providerAccessToken } = (await account.getSession("current")) || {};
 //         const profilePicture = providerAccessToken
@@ -76,16 +36,54 @@ export const storeUserData = async () => {
 //                 name: user.name,
 //                 imageUrl: profilePicture,
 //                 joinedAt: new Date().toISOString(),
-//                 status: "user", // <-- Ensure a default status is set
 //             }
 //         );
 //
 //         if (!createdUser.$id) redirect("/sign-in");
-//         return createdUser;
 //     } catch (error) {
 //         console.error("Error storing user data:", error);
 //     }
 // };
+
+// In Auth.ts - UPDATED storeUserData function
+export const storeUserData = async () => {
+    try {
+        const user = await account.get();
+        if (!user) throw new Error("User not found");
+
+        // Check for existing user first
+        const existingUser = await getExistingUser(user.$id);
+        if (existingUser) {
+            console.log(`User ${user.name} already exists.`);
+            return existingUser;
+        }
+
+        const { providerAccessToken } = (await account.getSession("current")) || {};
+        const profilePicture = providerAccessToken
+            ? await getGooglePicture(providerAccessToken)
+            : null;
+
+        const createdUser = await database.createDocument(
+            appwriteConfig.databaseId,
+            appwriteConfig.userTableId,
+            ID.unique(),
+            {
+                accountId: user.$id,
+                email: user.email,
+                name: user.name,
+                imageUrl: profilePicture,
+                joinedAt: new Date().toISOString(),
+                status: "user",
+            }
+        );
+
+        return createdUser;
+    } catch (error) {
+        console.error("Error storing user data:", error);
+        return null;
+    }
+};
+
 
 const getGooglePicture = async (accessToken: string) => {
     try {

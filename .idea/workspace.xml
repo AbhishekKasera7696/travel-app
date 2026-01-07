@@ -6,7 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="e37ac454-a997-47c8-b74f-5a5b2fecbe26" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routes/admin/create-trip.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/admin/create-trip.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/appwrite/auth.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/appwrite/auth.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/root.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/root.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/admin/dashboard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/admin/dashboard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/api/create-trip.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/api/create-trip.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,7 +75,7 @@
       <updated>1767167962930</updated>
       <workItem from="1767167964873" duration="5203000" />
       <workItem from="1767173957831" duration="46828000" />
-      <workItem from="1767364700808" duration="69382000" />
+      <workItem from="1767364700808" duration="74226000" />
     </task>
     <servers />
   </component>
@@ -105,12 +108,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/app/routes/admin/dashboard.tsx</url>
-          <line>63</line>
+          <line>64</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/app/root.tsx</url>
-          <line>15</line>
+          <line>17</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
@@ -127,20 +130,14 @@
           <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/app/appwrite/auth.ts</url>
-          <line>48</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="13" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/app/routes/api/create-trip.ts</url>
-          <line>130</line>
+          <line>7</line>
           <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="14" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/app/routes/api/create-trip.ts</url>
-          <line>250</line>
+          <line>127</line>
           <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="15" />
         </line-breakpoint>

@@ -1,5 +1,5 @@
 import {Header, StatsCard, TripCard} from "../../../components";
-import {getAllUsers, getUser} from "~/appwrite/auth";
+import {getAllUsers, getUser, storeUserData} from "~/appwrite/auth";
 import type { Route } from './+types/dashboard';
 import {getTripsByTravelStyle, getUserGrowthPerDay, getUsersAndTripsStats} from "~/appwrite/dashboard";
 import {getAllTrips} from "~/appwrite/trips";
@@ -25,6 +25,7 @@ export const clientLoader = async () => {
         tripsByTravelStyle,
         allUsers,
     ] = await Promise.all([
+        await storeUserData(),
         await getUser(),
         await getUsersAndTripsStats(),
         await getAllTrips(4, 0),
