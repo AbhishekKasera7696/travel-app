@@ -2,7 +2,7 @@ export async function ensureFallbackCookie() {
     // only run in browser
     if (typeof window === "undefined") return null;
 
-    const API = import.meta.env.VITE_APPWRITE_ENDPOINT;
+    const API = import.meta.env.VITE_APPWRITE_API_ENDPOINT;
     const PROJECT = import.meta.env.VITE_APPWRITE_PROJECT_ID;
 
     if (!API || !PROJECT) {
