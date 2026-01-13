@@ -60,7 +60,7 @@ import { Link, redirect } from "react-router";
 import { ButtonComponent } from "@syncfusion/ej2-react-buttons";
 import { loginWithGoogle } from "~/appwrite/auth";
 import { account } from "~/appwrite/client";
-import { ensureFallbackCookie } from "~/lib/appwrite-fallback";
+import { ensureFallbackCookie } from "~/appwrite/appwrite-fallback";
 
 export async function clientLoader() {
     try {
