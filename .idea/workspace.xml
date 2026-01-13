@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e37ac454-a997-47c8-b74f-5a5b2fecbe26" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/appwrite/appwrite-fallback.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/root.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/root.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routes/root/sign-in.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/root/sign-in.tsx" afterDir="false" />
-    </list>
+    <list default="true" id="e37ac454-a997-47c8-b74f-5a5b2fecbe26" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -76,7 +71,7 @@
       <workItem from="1767173957831" duration="46828000" />
       <workItem from="1767364700808" duration="76532000" />
       <workItem from="1767879411310" duration="640000" />
-      <workItem from="1767946513196" duration="3986000" />
+      <workItem from="1767946513196" duration="4577000" />
     </task>
     <servers />
   </component>

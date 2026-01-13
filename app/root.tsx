@@ -124,7 +124,7 @@ import { registerLicense } from "@syncfusion/ej2-base";
 import { storeUserData, getUser } from "~/appwrite/auth";
 import { account } from "~/appwrite/client";
 
-import { ensureFallbackCookie } from "./appwrite/appwrite-fallback";
+import { ensureFallbackCookie } from "~/appwrite/appwrite-fallback";
 
 // Register Syncfusion license
 registerLicense(import.meta.env.VITE_SYNCFUSION_LICENSE_KEY);
