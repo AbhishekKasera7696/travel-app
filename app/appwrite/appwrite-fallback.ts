@@ -1,11 +1,11 @@
 export async function ensureFallbackCookie() {
-    if (typeof window === "undefined") return null; // run only client-side
+    if (typeof window === "undefined") return null;
 
     let API = import.meta.env.VITE_APPWRITE_API_ENDPOINT;
     const PROJECT = import.meta.env.VITE_APPWRITE_PROJECT_ID;
 
     if (!API || !PROJECT) {
-        console.warn("⚠️ Missing Appwrite endpoint or project id - fallback cookie cannot be ensured.");
+        console.warn(" Missing Appwrite endpoint or project id - fallback cookie cannot be ensured.");
         return null;
     }
 

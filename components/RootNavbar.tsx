@@ -15,6 +15,12 @@ const RootNavbar = () => {
         navigate('/sign-in')
     }
 
+    const userImage =
+        user?.imageUrl ||
+        `https://ui-avatars.com/api/?name=${encodeURIComponent(
+            user?.name?.split(" ")[0] || "U"
+        )}&background=random&color=fff`;
+
     return (
         <nav className={cn(location.pathname === `/travel/${params.tripId}` ? 'bg-white' : 'glassmorphism', 'w-full fixed z-50')}>
             <header className="root-nav wrapper">
@@ -30,7 +36,13 @@ const RootNavbar = () => {
                         </Link>
                     )}
 
-                    <img src={user?.imageUrl || '/assets/images/david.wepb'} alt="user" referrerPolicy="no-referrer" />
+                    {/*<img src={user?.imageUrl || '/assets/images/david.wepb'} alt="user" referrerPolicy="no-referrer" />*/}
+                    <img
+                        src={userImage}
+                        alt={user?.name || "User"}
+                        referrerPolicy="no-referrer"
+                        className="size-10 rounded-full object-cover border border-white/30"
+                    />
 
                     <button onClick={handleLogout} className="cursor-pointer">
                         <img

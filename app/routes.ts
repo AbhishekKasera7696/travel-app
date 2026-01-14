@@ -2,6 +2,7 @@ import { type RouteConfig } from "@react-router/dev/routes";
 
 export default [
     { path: "sign-in", file: "routes/root/sign-in.tsx" },
+    { path: "sign-up", file: "routes/root/sign-up.tsx" },
     { path: "api/create-trip", file: "routes/api/create-trip.ts" },
 
     // Admin Layout + routes
